@@ -1,0 +1,19 @@
+Melk\ProgrTeach\MainBundle\Entity\StudentGroup:
+    type: entity
+    table: student_group
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+    manyToOne:
+        year:
+            targetEntity: StudentYear
+            inversedBy: groups
+        course:
+            targetEntity: StudentCourse
+            inversedBy: groups

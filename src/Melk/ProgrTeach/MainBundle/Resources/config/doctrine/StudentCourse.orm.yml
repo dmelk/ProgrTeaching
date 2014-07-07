@@ -1,0 +1,16 @@
+Melk\ProgrTeach\MainBundle\Entity\StudentCourse:
+    type: entity
+    table: student_course
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+    oneToMany:
+        groups:
+            targetEntity: StudentGroup
+            mappedBy: course

@@ -1,0 +1,20 @@
+Melk\ProgrTeach\MainBundle\Entity\StudentYear:
+    type: entity
+    table: student_year
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        start:
+            type: date
+        end:
+            type: date
+    oneToMany:
+        groups:
+            targetEntity: StudentGroup
+            mappedBy: year

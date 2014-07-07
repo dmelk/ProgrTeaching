@@ -1,0 +1,14 @@
+Melk\ProgrTeach\MainBundle\Entity\Group:
+    type: entity
+    table: groups
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    manyToOne:
+        permission:
+            targetEntity: Permission
+            joinColumn:
+                name: permission_id
+                referencedColumnName: id

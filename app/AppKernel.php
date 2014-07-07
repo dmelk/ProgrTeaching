@@ -25,7 +25,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
 
             // FOS bundles
-//            new \FOS\UserBundle\FOSUserBundle(),
+            new \FOS\UserBundle\FOSUserBundle(),
 
             // Melk bundles
             new Melk\ProgrTeach\MainBundle\MelkProgrTeachMainBundle(),

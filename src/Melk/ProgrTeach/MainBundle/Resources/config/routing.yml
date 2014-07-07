@@ -1,0 +1,3 @@
+melk_progr_teach_main_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MelkProgrTeachMainBundle:Default:index }

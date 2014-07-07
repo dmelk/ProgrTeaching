@@ -20,6 +20,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "sonata-project/core-bundle": "~2.2@dev",
         "sonata-project/admin-bundle": "~2.2@dev",
+        "sonata-project/doctrine-extensions": "dev-master",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2@dev",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
