@@ -2,7 +2,6 @@
 
 namespace Melk\ProgrTeach\MainBundle\DependencyInjection;
 
-use Melk\ProgrTeach\MainBundle\Entity\Permission;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 

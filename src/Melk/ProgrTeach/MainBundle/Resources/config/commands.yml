@@ -5,4 +5,4 @@ services:
             - @melk.progr.permission.manager
             - ~
         tags:
-            - name: console.command
+            - { name: console.command }

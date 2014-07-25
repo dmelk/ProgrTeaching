@@ -127,4 +127,13 @@ class User extends BaseUser
     {
         return $this->groups;
     }
+
+    /**
+     * Returns current class name
+     * @return string
+     */
+    public static function getClassName() {
+        return get_called_class();
+    }
+
 }
