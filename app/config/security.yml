@@ -19,41 +19,20 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        admin:
-            pattern:            /admin(.*)
-            security:           true
-            context:            user
-            form_login:
-                provider:       fos_userbundle
-                login_path:     /admin/login
-                use_forward:    false
-                check_path:     /admin/login_check
-                failure_path:   null
-            logout:
-                path:           /admin/logout
-            anonymous:          true
-
         main:
-            pattern:             .*
+            pattern:            ^/
             security:           true
             context:            user
             form_login:
                 provider:       fos_userbundle
-                login_path:     /404
+                login_path:     /login
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null
-#                success_handler: antiq.auth.handler
-#                failure_handler: antiq.auth.handler
+#                success_handler: melk.auth.handler
+#                failure_handler: melk.auth.handler
             logout:             true
             anonymous:          true
-#        main:
-#            pattern: ^/
-#            form_login:
-#                provider: fos_userbundle
-#                csrf_provider: form.csrf_provider
-#            logout:       true
-#            anonymous:    true
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
