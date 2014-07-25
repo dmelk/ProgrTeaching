@@ -24,5 +24,27 @@ class MelkProgrTeachMainExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $this->setPermissionManagerInfo($config['permissions'], $container);
+    }
+
+    /**
+     * Set information for permission manager
+     * @param array $config
+     * @param ContainerBuilder $container
+     */
+    public function setPermissionManagerInfo(array $config, ContainerBuilder $container){
+        $permissionsManager = $container->getDefinition('melk.progr.permission.manager');
+
+        if (isset($config['class']) && !empty($config['class']))
+            $permissionsManager->addMethodCall('setEntityClass', [$config['class']]);
+
+        foreach ($config['dependencies'] as $method) {
+            $permissionsManager->addMethodCall('addDependency', [$method]);
+        }
+
+        foreach ($config['values'] as $key => $perm) {
+            $permissionsManager->addMethodCall('addPermission', [$key, $perm['label'], $perm['roles']]);
+        }
     }
 }

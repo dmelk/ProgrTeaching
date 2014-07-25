@@ -9,7 +9,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     access_decision_manager:
         strategy: unanimous
@@ -19,16 +19,51 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            pattern: ^/
+        admin:
+            pattern:            /admin(.*)
+            security:           true
+            context:            user
             form_login:
-                provider: fos_userbundle
-                csrf_provider: form.csrf_provider
-            logout:       true
-            anonymous:    true
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+            logout:
+                path:           /admin/logout
+            anonymous:          true
+
+        main:
+            pattern:             .*
+            security:           true
+            context:            user
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /404
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+#                success_handler: antiq.auth.handler
+#                failure_handler: antiq.auth.handler
+            logout:             true
+            anonymous:          true
+#        main:
+#            pattern: ^/
+#            form_login:
+#                provider: fos_userbundle
+#                csrf_provider: form.csrf_provider
+#            logout:       true
+#            anonymous:    true
 
     access_control:
+        # URL of FOSUserBundle which need to be available to anonymous users
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Admin login page needs to be access without credential
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
         - { path: ^/admin/, role: ROLE_SUPER_ADMIN }

@@ -24,6 +24,23 @@ class Permission
      */
     private $roles;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $groups;
+
+    /**
+     * @var string
+     */
+    private $label;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -79,5 +96,65 @@ class Permission
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public static function getClassName() {
+        return get_called_class();
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \Melk\ProgrTeach\MainBundle\Entity\Group $groups
+     * @return Permission
+     */
+    public function addGroup(\Melk\ProgrTeach\MainBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \Melk\ProgrTeach\MainBundle\Entity\Group $groups
+     */
+    public function removeGroup(\Melk\ProgrTeach\MainBundle\Entity\Group $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     * @return Permission
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string 
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 }

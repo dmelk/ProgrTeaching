@@ -10,5 +10,12 @@ Melk\ProgrTeach\MainBundle\Entity\Permission:
         name:
             type: string
             length: 255
+        label:
+            type: string
+            length: 255
         roles:
             type: json
+    oneToMany:
+        groups:
+            targetEntity: Melk\ProgrTeach\MainBundle\Entity\Group
+            mappedBy: permission

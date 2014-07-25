@@ -9,6 +9,4 @@ Melk\ProgrTeach\MainBundle\Entity\Group:
     manyToOne:
         permission:
             targetEntity: Permission
-            joinColumn:
-                name: permission_id
-                referencedColumnName: id
+            inversedBy: groups
