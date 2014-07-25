@@ -1,0 +1,8 @@
+services:
+    melk.sync.perm.command:
+        class: Melk\ProgrTeach\MainBundle\Command\SyncPermissionsCommand
+        arguments:
+            - @melk.progr.permission.manager
+            - ~
+        tags:
+            - name: console.command

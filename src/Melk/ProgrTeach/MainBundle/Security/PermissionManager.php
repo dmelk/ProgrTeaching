@@ -11,7 +11,7 @@ namespace Melk\ProgrTeach\MainBundle\Security;
 use Doctrine\ORM\EntityManager;
 use Melk\ProgrTeach\MainBundle\Entity\Permission;
 
-class PermissionManager {
+class PermissionManager implements PermissionManagerInterface{
 
     /**
      * Entity manager

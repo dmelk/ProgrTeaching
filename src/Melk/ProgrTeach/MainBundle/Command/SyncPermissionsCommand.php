@@ -11,8 +11,20 @@ namespace Melk\ProgrTeach\MainBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Melk\ProgrTeach\MainBundle\Security\PermissionManagerInterface;
 
 class SyncPermissionsCommand extends ContainerAwareCommand{
+
+    /**
+     * Permission manager for sycn
+     * @var PermissionManagerInterface
+     */
+    private $permissionManager;
+
+    public function __construct(PermissionManagerInterface $permissionManager, $name = null) {
+        parent::__construct($name);
+        $this->permissionManager = $permissionManager;
+    }
 
     protected function configure() {
         $this
@@ -23,10 +35,9 @@ class SyncPermissionsCommand extends ContainerAwareCommand{
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $permManager = $this->getContainer()->get('melk.progr.permission.manager');
         $output->writeln('Starting synchronization');
 
-        $permManager->syncDatabase();
+        $this->permissionManager->syncDatabase();
 
         $output->writeln('Synchronization completed');
     }
